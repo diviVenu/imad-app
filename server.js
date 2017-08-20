@@ -56,7 +56,7 @@ var htmltemplate= `
 </html>
 `;
 
-return htmlTemplate;
+return htmltemplate;
 }
 
 app.get('/article-one', function (req, res) {
