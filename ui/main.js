@@ -4,15 +4,15 @@ button.onclick = function ()
     var request = new XMLHttpRequest();
     request.onreadystatechange = function ()
     {
-        if(request.readyState === XMLHttpRequest.Done)
+        if(request.readyState == XMLHttpRequest.Done)
         {
-            if(request.status === 200)
+            if(request.status == 200)
             {
                 var counter = request.responseText;
                 var span = document.getElementById('count');
                 span.innerHTML = counter.toString();
-                alert('Hi',counter.toString());
-                            }
+                
+                                           }
         }
     };
     request.open('GET','http://divya09feb91.imad.hasura-app.io/counter',true);
