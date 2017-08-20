@@ -1,19 +1,19 @@
 var button=document.getElementById('counter');
-button.onclick=function()
+button.onclick=function ()
 {
-    var req=new XMLHttpRequest();
-    req.onreadystatechange=function()
+    var request=new XMLHttpRequest();
+    request.onreadystatechange=function ()
     {
-        if(req.readystate===XMLHttpRequest.Done)
+        if(request.readystate===XMLHttpRequest.Done)
         {
-            if(req.status===200)
+            if(request.status===200)
             {
-                var counter=req.responseText;
+                var counter=request.responseText;
                 var span=document.getElementById('count');
                 span.innerHTML=counter.toString();
                             }
         }
     };
-    req.open('GET','http://divya09feb91.imad.hasura-app.io/counter',true);
-    req.send(null);
+    request.open('GET','http://divya09feb91.imad.hasura-app.io/counter',true);
+    request.send(null);
 };
