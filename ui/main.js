@@ -15,5 +15,5 @@ button.onclick=function()
         }
     };
     req.open('GET','http://divya09feb91.imad.hasura-app.io',true);
-    req.send(null);
+    req.send(n);
 };
