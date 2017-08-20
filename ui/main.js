@@ -1,4 +1,4 @@
-var button=document.getElementById("counter");
+var button=document.getElementById('counter');
 button.onclick=function()
 {
     var req=new XMLHttpRequest();
@@ -9,11 +9,11 @@ button.onclick=function()
             if(req.status===200)
             {
                 var counter=req.responseText;
-                var span=document.getElementById("count");
+                var span=document.getElementById('count');
                 span.innerHTML=counter.toString();
                             }
         }
     };
-    req.open('GET','http://divya09feb91.imad.hasura-app.io',true);
+    req.open('GET','http://divya09feb91.imad.hasura-app.io/counter',true);
     req.send(n);
 };
