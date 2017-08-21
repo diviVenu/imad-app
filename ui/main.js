@@ -23,7 +23,7 @@ var button = document.getElementById('counter');
             }
         }
     };
-    request.open('GET','http://divya09feb91.imad.hasura-app.io/counter',true);
+    request.open('GET', 'http://divya09feb91.imad.hasura-app.io/counter', true);
     request.send(null);
  }; 
   
