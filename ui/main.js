@@ -1,5 +1,5 @@
-var button = document.getElementById('counter');
 //initial try
+//var button = document.getElementById('counter');
 //var counter=0;
 //button.onclick = function ()
 //{
@@ -7,7 +7,7 @@ var button = document.getElementById('counter');
     // var span = document.getElementById('count');
               //  span.innerHTML = counter.toString();
   // };
- button.onclick = function () {
+function b_click() {
      
       var request = new XMLHttpRequest();
       
@@ -25,7 +25,7 @@ var button = document.getElementById('counter');
     };
     request.open('GET', 'http://divya09feb91.imad.hasura-app.io/counter', true);
     request.send(null);
- }; 
+ } 
   
 /* first try to get the names on button click
 var nameInput= document.getElementById('name');
