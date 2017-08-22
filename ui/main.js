@@ -7,7 +7,7 @@
     // var span = document.getElementById('count');
               //  span.innerHTML = counter.toString();
   // };
-function b_click(){
+function exec(){
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() 
     {
