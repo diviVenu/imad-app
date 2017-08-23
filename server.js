@@ -22,11 +22,16 @@ app.get('/ui/main.js', function (req, res) {
 });
 
 var pool=require('pg').pool;
+
 var config={
     user: 'divya09feb91',
     database: 'divya09feb91',
-    host:
+    host: 'db.imad.hasura-app.io',
+    port: '5432',
+    password: process.env.DB_password
 };
+
+
 var articleOne={
     title: 'Article- one',
     heading: 'Article- one',
