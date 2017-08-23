@@ -21,6 +21,12 @@ app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
 
+var pool=require('pg').pool;
+var config={
+    user: 'divya09feb91',
+    database: 'divya09feb91',
+    host:
+};
 var articleOne={
     title: 'Article- one',
     heading: 'Article- one',
