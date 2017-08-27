@@ -100,7 +100,7 @@ app.get('/submit-name/:name', function (req, res) {
     res.send(JSON.stringify(names));
 });
 
-function hash(input)
+function hash(input,salt)
 {
     var hased=crypto.pbkdf2sync(input, salt, 10000, 512, 'sha512');
     return hashedstring.toString('hex');
