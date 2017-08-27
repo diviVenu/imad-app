@@ -105,7 +105,7 @@ app.get('/submit-name/:name', function (req, res) {
 });
 
 app.get('/hash/:input',function (req, res) {
-    var hashedstring=hash(re.params.input,'My Name');
+    var hashedstring=hash(req.params.input,'My Name');
        res.send(hashedstring);
 });
 
