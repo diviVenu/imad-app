@@ -74,11 +74,7 @@ var htmltemplate= `
 return htmltemplate;
 }
 
-function hash(input)
-{
-    var hased=crypto.pbkdf2syn(input,salt,10000,512,'sha512');
-    return hashedstring.toString('hex');
-}
+
 app.get('/article-one', function (req, res) {
     res.send(createTemplate(articleOne));
 });
@@ -103,6 +99,12 @@ app.get('/submit-name/:name', function (req, res) {
     names.push(name);
     res.send(JSON.stringify(names));
 });
+
+function hash(input)
+{
+    var hased=crypto.pbkdf2syn(input, salt, 10000, 512, 'sha512');
+    return hashedstring.toString('hex');
+}
 
 app.get('/hash/:input',function (req, res) {
     var hashedstring=hash(req.params.input,'My Name');
