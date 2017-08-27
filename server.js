@@ -107,8 +107,8 @@ function hash(input,salt)
 }
 
 app.get('/hash/:input',function (req, res) {
-    var hashedstring=hash(req.params.input,'My Name');
-       res.send(hashedstring);
+    var hashedString=hash(req.params.input,'My Name');
+       res.send(hashedString);
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
