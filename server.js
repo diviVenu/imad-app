@@ -102,7 +102,7 @@ app.get('/submit-name/:name', function (req, res) {
 
 function hash(input,salt)
 {
-    var hased=crypto.pbkdf2sync(input, salt, 10000, 512, 'sha512');
+    var hased=crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
     return hashedstring.toString('hex');
 }
 
