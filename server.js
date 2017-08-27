@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-
+var crypto=require('crypto');
 var app = express();
 app.use(morgan('combined'));
 
@@ -74,6 +74,11 @@ var htmltemplate= `
 return htmltemplate;
 }
 
+function hash(input)
+{
+    var hased=crypto.pbkdf2syn(input,salt,10000,512,'sha512');
+    return hashedstring.toString('hex');
+}
 app.get('/article-one', function (req, res) {
     res.send(createTemplate(articleOne));
 });
@@ -97,6 +102,11 @@ app.get('/submit-name/:name', function (req, res) {
     var name=req.params.name;
     names.push(name);
     res.send(JSON.stringify(names));
+});
+
+app.get('/hash/:input',function (req, res) {
+    var hashedstring=hash(re.params.input,'My Name');
+       res.send(hashedstring);
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
