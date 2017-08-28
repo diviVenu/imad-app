@@ -46,8 +46,11 @@ submit.onclick= function ()
    
 };*/
 
-var submit=document.getElementById('submit_btn');
- submit.onclick = function () {
+//Submit uname/paswd to login
+
+var submit=document.getElementById('submit_btn2');
+ submit.onclick = function () 
+ {
      
       var request = new XMLHttpRequest();
       
@@ -57,24 +60,24 @@ var submit=document.getElementById('submit_btn');
         {
             if(request.status === 200)
             {
-                var names=request.reponseText;
-                names=JSON.parse(names);
-   var list='';
-   for(var i=0;i<names.length;i++)
-   {
-       list+='<li>' + names[i] + '</li>';
-       
-   }
-   var ul=document.getElementById('nameList');
-   ul.innerHTML=list;
+               alert('Logged in successfully');
+            }
+            else if(request.status===403){
+                 alert('uname/paswd is incorrect!');
+            }
+            else if(request.status===500){
+                 alert('sOMETHING WENT WRONG IN THE Server');
             }
         }
     };
     
-    var nameInput= document.getElementById('name');
-var name= nameInput.value;
-    request.open('GET', 'http://divya09feb91.imad.hasura-app.io/submit-name?name='+name, true);
-    request.send(null);
+    var username= document.getElementById('username').value;
+var password= document.getElementById('password').value;
+console.log(usename);
+console.log(password);
+    request.open('POST', 'http://divya09feb91.imad.hasura-app.io/login', true);
+    request.setRequestHeader('Content-Type','application/json');
+    request.send(JSON.Stringify({username: username, password: password}));
  };
 
 
