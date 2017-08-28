@@ -133,6 +133,8 @@ app.post('/create-user', function(req,res){
         }
     });
     });
+    
+    //Login and Session
  
  app.post('/login', function(req,res){
     
@@ -167,8 +169,25 @@ app.post('/create-user', function(req,res){
                     }
         }
     });
-    });   
+    }); 
     
+    //Check session is created
+    
+    app.get('/Check-login',function (req, res) {
+   if (req.session && req.session.auth && req.session.auth.userId){
+       res.send('You are loged in:'+ req.session.auth.userId.toStrin());
+          }
+          else{
+              res.send("You are not logged in");
+          }
+});
+
+//Logout and check session
+app.get('/Check-logout',function (req, res) {
+   delete req.session.auth;
+              res.send("You are Logged Out!");
+        
+});
   
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
