@@ -5,6 +5,7 @@ var crypto=require('crypto');
 var app = express();
 app.use(morgan('combined'));
 var bodyParser=require('body-parser');
+var session=require('express-session');
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -114,6 +115,7 @@ app.get('/hash/:input',function (req, res) {
 });
 
 app.use(bodyParser.json());
+app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
 
 app.post('/create-user', function(req,res){
     
@@ -136,7 +138,7 @@ app.post('/create-user', function(req,res){
     
     var username=req.body.username;
     var password=req.body.password;
-    
+   
     pool.query('SELECT * FROM USERS WHERE username=$1',[username],function(err,result){
         if (err) {
             res.status(500).send(err.toString());
@@ -152,7 +154,10 @@ app.post('/create-user', function(req,res){
                         var dbString=result.rows[0].password;
                         var salt=dbString.split('$1')[2];
                         var hashedPassword=hash(password,salt);
-                        if(hashedPassword===dbString){
+                        
+                        if(hashedPassword===dbString)
+                        {
+                             req.session.auth=(userId: result.rows[0]:id);
                             res.send('Credentials Correct');
                         }
                         else
@@ -164,6 +169,7 @@ app.post('/create-user', function(req,res){
     });
     });   
     
+  
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
