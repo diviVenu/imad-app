@@ -46,6 +46,55 @@ var articleOne={
     
 };
 
+var articles={
+    'article-one':{
+    title: 'Article- one',
+    heading: 'Article- one',
+    date: '20-Aug-2017',
+    content: `
+    <p>This is the content for article one about article-one.html
+    </p>   `
+}
+};
+
+var pool= new Pool(Config);
+//Module P10
+//test-db
+app.get('/test-db',function (req, res) {
+   pool.query('select * from test', function(err, result)
+   {
+   if (err) {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            res.send(JSON.stringify(result));
+        }
+  });
+});
+
+//Dynamic content from DB , change the articles function to load articles from DB
+app.get('/articlesNew/:articleName',function (req, res) {
+    pool.query("select * from article where title='"+req.params.articleName+"'",function(err,result)
+    {
+        if (err) {
+            res.status(500).send(err.toString());
+        }
+        else
+        
+        if (result.rows.length===0)
+        {
+            res.status(500).send('Article not found'); 
+        }
+        else
+            {
+           var articleData=result.rows[0];
+           res.send(createTemplate2(articleData));
+        }
+        
+    });
+});
+//Module P10
 function createTemplate(data)
 {
        var title=data.title;
@@ -103,6 +152,8 @@ app.get('/submit-name/:name', function (req, res) {
     res.send(JSON.stringify(names));
 });
 
+
+//Module P11
 function hash(input,salt)
 {
     var hashed=crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
