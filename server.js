@@ -135,6 +135,80 @@ app.get('/submit-name/:name', function (req, res) {
 });
 
 
+//Begin Module P10
+//test-db
+var pool= new Pool(config);
+
+app.get('/test-db',function (req, res) {
+   pool.query('select * from test', function(err, result)
+   {
+   if (err) {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            res.send(JSON.stringify(result));
+        }
+  });
+});
+
+// Navigate to /test-db to test the above portion of selecting data from DB
+
+//Dynamic content from DB , change the articles function to load articles from DB
+app.get('/articlesNew/:articleName',function (req, res) {
+    pool.query("select * from article where title='"+req.params.articleName+"'",function(err,result)
+    {
+        if (err) {
+            res.status(500).send(err.toString());
+        }
+        else
+        
+        if (result.rows.length===0)
+        {
+            res.status(404).send('Article not found'); 
+        }
+        else
+            {
+           var articleData=result.rows[0];
+           res.send(createTemplate2(articleData));
+        }
+        
+    });
+});
+
+function createTemplate2(data)
+{
+       var title=data.title;
+    var date=data.date;
+    var heading=data.heading;
+    var content=data.content;
+var htmltemplate= `
+    <html>
+    <head><title>${title}</title>
+    <link href="/ui/style.css" rel="stylesheet" />
+            </head>
+    <body>
+        <div class="container">
+    <div>
+        <a href="/">HOME</a>
+        </div>
+        <div><h1>${heading}</h1></div>
+        <div>
+        ${date.toString()}
+        </div>
+    <div>
+        ${content}
+        </div>
+        </div>
+        </body>
+</html>
+`;
+
+return htmltemplate;
+}
+//End Module P10
+
+
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
