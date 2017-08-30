@@ -111,7 +111,7 @@ app.get('/article-three', function (req, res) {
     res.send('Article 3');
 });
 // Replacing the above two separate function calls with the following dynamic variable value subtitution in the URL
-app.get('/:articleName',function(req,res){
+app.get('/articles/:articleName',function(req,res){
 var articleName=req.params.articleName;
 res.send(createTemplate(articles[articleName]));
 });
