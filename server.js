@@ -36,7 +36,7 @@ var config={
 };
 
 //End Module P10
-var articleOne={
+/*var articleOne={
     title: 'Article- one',
     heading: 'Article- one',
     date: '20-Aug-2017',
@@ -45,7 +45,7 @@ var articleOne={
     </p>
     `
     
-};
+};*/
 
 var articles={
     'article-one':{
