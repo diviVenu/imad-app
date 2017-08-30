@@ -32,7 +32,7 @@ var config={
     database: 'divya09feb91',
     host: 'db.imad.hasura-app.io',
     port: '5432',
-    password: process.env.DB_password
+    password: process.env.DB_PASSWORD
 };
 
 //End Module P10
