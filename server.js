@@ -36,6 +36,8 @@ var config={
 };
 
 //End Module P10
+
+//Begin Module P4  Complete
 /*var articleOne={
     title: 'Article- one',
     heading: 'Article- one',
@@ -98,7 +100,7 @@ var htmltemplate= `
 return htmltemplate;
 }
 
-//Begin Module 4
+
 /* app.get('/article-one', function (req, res) {
     res.send(createTemplate(articleOne));
 });
@@ -135,7 +137,7 @@ app.get('/submit-name/:name', function (req, res) {
 });
 
 
-//Begin Module P10
+//Begin Module P10  Complete
 //test-db
 var pool= new Pool(config);
 
