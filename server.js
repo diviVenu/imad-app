@@ -67,7 +67,7 @@ var articles={
 
 //Begin Module P10
 //test-db
-var pool= new pool(Config);
+var pool= new pool(config);
 
 app.get('/test-db',function (req, res) {
    pool.query('select * from test', function(err, result)
