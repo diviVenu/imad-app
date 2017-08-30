@@ -54,11 +54,19 @@ var articles={
     content: `
     <p>This is the content for article one about article-one.html
     </p>   `
+},
+ 'article-two':{
+    title: 'Article- two',
+    heading: 'Article- two',
+    date: '30-Aug-2017',
+    content: `
+    <p>This is for Module P4 JS,HTML,CSS in article two.
+    </p>   `
 }
 };
 
 var pool= new Pool(Config);
-//Module P10
+//Begin Module P10
 //test-db
 app.get('/test-db',function (req, res) {
    pool.query('select * from test', function(err, result)
@@ -94,7 +102,7 @@ app.get('/articlesNew/:articleName',function (req, res) {
         
     });
 });
-//Module P10
+//End Module P10
 function createTemplate(data)
 {
        var title=data.title;
@@ -126,14 +134,22 @@ var htmltemplate= `
 return htmltemplate;
 }
 
-
-app.get('/article-one', function (req, res) {
+//Begin Module 4
+/* app.get('/article-one', function (req, res) {
     res.send(createTemplate(articleOne));
 });
 
 app.get('/article-two', function (req, res) {
     res.sendFile(path.join(__dirname, 'ui', 'article-two.html'))
 });
+*/
+// Replacing the above two separate function calls with the following dynamic variable value subtitution in the URL
+app.get('/:articleName',function(req,res){
+var articleName=req.params.articleName;
+res.send(createTemplate(articles[articleName]));
+});
+
+//End Module 4
 
 var counter=0;
 app.get('/counter', function (req, res) {
