@@ -215,7 +215,7 @@ return htmltemplate;
 
 //End Module P10
 
-//Module P11
+//Module P11 start from Console post request
 function hash(input,salt)
 {
     var hashed=crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
