@@ -213,7 +213,93 @@ return htmltemplate;
 
 //End Module P10
 
+//Module P11
+function hash(input,salt)
+{
+    var hashed=crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
+    return hashed.toString('hex');
+}
 
+app.get('/hash/:input',function (req, res) {
+    var hashedString=hash(req.params.input,'MyName');
+       res.send(hashedString);
+});
+
+app.use(bodyParser.json());
+app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
+
+app.post('/create-user', function(req,res){
+    
+    var username=req.body.username;
+    var password=req.body.password;
+    var salt=crypto.RandomBytes(128).toString('hex');
+    var dbString=hash(password,salt);
+    pool.query('INSERT INTO USERS (username,password) values ($1,$2)',[username,dbString],function(err,result){
+        if (err) {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+            res.send('user Successfully created!!'+ username);
+        }
+    });
+    });
+    
+    //Login and Session
+ 
+ app.post('/login', function(req,res){
+    
+    var username=req.body.username;
+    var password=req.body.password;
+   
+    pool.query('SELECT * FROM USERS WHERE username=$1',[username],function(err,result){
+        if (err) {
+            res.status(500).send(err.toString());
+        }
+        else
+        {
+           if (result.rows.length===0)
+           {
+            res.send(403).send('username/paswd os invalid');
+                    }
+                    else
+                    {
+                        var dbString=result.rows[0].password;
+                        var salt=dbString.split('$1')[2];
+                        var hashedPassword=hash(password,salt);
+                        
+                        if(hashedPassword===dbString)
+                        {
+                             req.session.auth={userId: result.rows[0].id};
+                            res.send('Credentials Correct');
+                        }
+                        else
+                        {
+                            res.send(403).send('uname/pswd is invalid');
+                        }
+                    }
+        }
+    });
+    }); 
+    
+    //Check session is created
+    
+    app.get('/Check-login',function (req, res) {
+   if (req.session && req.session.auth && req.session.auth.userId){
+       res.send('You are loged in:'+ req.session.auth.userId.toString());
+          }
+          else{
+              res.send("You are not logged in");
+          }
+});
+
+//Logout and check session
+app.get('/Check-logout',function (req, res) {
+   delete req.session.auth;
+              res.send("You are Logged Out!");
+        
+});
+//Module P11  
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
