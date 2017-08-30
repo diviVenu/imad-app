@@ -49,6 +49,7 @@ var config={
 
 var articles={
     'article-one':{
+        title: 'Article_One',
       heading: 'Article- one',
     date: '20-Aug-2017',
     content: `
@@ -56,6 +57,7 @@ var articles={
     </p>   `
 },
  'article-two':{
+     title: 'Article_Two',
        heading: 'Article- two',
     date: '30-Aug-2017',
     content: `
@@ -67,12 +69,13 @@ var articles={
 
 function createTemplate(data)
 {
+          var title=data.title;
            var date=data.date;
     var heading=data.heading;
     var content=data.content;
 var htmltemplate= `
     <html>
-    <head><title>Hello</title></head>
+    <head><title>${title}</title></head>
     <link href="/ui/style.css" rel="stylesheet" />
             </head>
     <body>
