@@ -140,7 +140,7 @@ app.get('/submit-name/:name', function (req, res) {
 var pool= new Pool(config);
 
 app.get('/test-db',function (req, res) {
-   pool.query('select * from Test', function(err, result)
+   pool.query('SELECT * FROM Test', function(err, result)
    {
    if (err) {
             res.status(500).send(err.toString());
