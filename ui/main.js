@@ -28,8 +28,7 @@ function exec(){
 }
   
 /* first try to get the names on button click */
-var nameInput= document.getElementById('name');
-var name= nameInput.value;
+var name= document.getElementById('name').value;
 var submit=document.getElementById('submit_btn');
 submit.onclick= function ()
 {
