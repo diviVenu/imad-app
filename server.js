@@ -153,6 +153,7 @@ app.get('/test-db',function (req, res) {
 });
 
 // Navigate to /test-db to test the above portion of selecting data from DB
+//Outpu will be the no: of rows in the table
 
 //Dynamic content from DB , change the articles function to load articles from DB
 app.get('/articlesNew/:articleName',function (req, res) {
