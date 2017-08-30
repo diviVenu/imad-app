@@ -207,6 +207,10 @@ var htmltemplate= `
 
 return htmltemplate;
 }
+
+// Navigate to /articlesNew/article-one to test the above portion of selecting data from DB
+//Output will be article from DB
+
 //End Module P10
 
 
