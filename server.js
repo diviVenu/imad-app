@@ -23,7 +23,7 @@ app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
 
-
+//Begin Module P10
 var pool=require('pg').pool;
 
 var config={
@@ -34,7 +34,7 @@ var config={
     password: process.env.DB_password
 };
 
-
+//End Module P10
 var articleOne={
     title: 'Article- one',
     heading: 'Article- one',
@@ -65,9 +65,10 @@ var articles={
 }
 };
 
-var pool= new Pool(Config);
 //Begin Module P10
 //test-db
+var pool= new Pool(Config);
+
 app.get('/test-db',function (req, res) {
    pool.query('select * from test', function(err, result)
    {
@@ -81,6 +82,8 @@ app.get('/test-db',function (req, res) {
   });
 });
 
+// Navigate to /test-db to test the above portion of selecting data from DB
+
 //Dynamic content from DB , change the articles function to load articles from DB
 app.get('/articlesNew/:articleName',function (req, res) {
     pool.query("select * from article where title='"+req.params.articleName+"'",function(err,result)
@@ -92,7 +95,7 @@ app.get('/articlesNew/:articleName',function (req, res) {
         
         if (result.rows.length===0)
         {
-            res.status(500).send('Article not found'); 
+            res.status(404).send('Article not found'); 
         }
         else
             {
@@ -102,6 +105,37 @@ app.get('/articlesNew/:articleName',function (req, res) {
         
     });
 });
+
+function createTemplate2(data)
+{
+       var title=data.title;
+    var date=data.date;
+    var heading=data.heading;
+    var content=data.content;
+var htmltemplate= `
+    <html>
+    <head><title>${title}</title>
+    <link href="/ui/style.css" rel="stylesheet" />
+            </head>
+    <body>
+        <div class="container">
+    <div>
+        <a href="/">HOME</a>
+        </div>
+        <div><h1>${heading}</h1></div>
+        <div>
+        ${date.toString()}
+        </div>
+    <div>
+        ${content}
+        </div>
+        </div>
+        </body>
+</html>
+`;
+
+return htmltemplate;
+}
 //End Module P10
 function createTemplate(data)
 {
@@ -242,7 +276,7 @@ app.post('/create-user', function(req,res){
     
     app.get('/Check-login',function (req, res) {
    if (req.session && req.session.auth && req.session.auth.userId){
-       res.send('You are loged in:'+ req.session.auth.userId.toStrin());
+       res.send('You are loged in:'+ req.session.auth.userId.toString());
           }
           else{
               res.send("You are not logged in");
@@ -255,7 +289,7 @@ app.get('/Check-logout',function (req, res) {
               res.send("You are Logged Out!");
         
 });
-  
+//Module P11  
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
