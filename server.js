@@ -49,16 +49,14 @@ var articleOne={
 
 var articles={
     'article-one':{
-    title: 'Article- one',
-    heading: 'Article- one',
+      heading: 'Article- one',
     date: '20-Aug-2017',
     content: `
     <p>This is the content for article one about article-one.html
     </p>   `
 },
  'article-two':{
-    title: 'Article- two',
-    heading: 'Article- two',
+       heading: 'Article- two',
     date: '30-Aug-2017',
     content: `
     <p>This is for Module P4 JS,HTML,CSS in article two.
@@ -69,13 +67,12 @@ var articles={
 
 function createTemplate(data)
 {
-       var title=data.title;
-    var date=data.date;
+           var date=data.date;
     var heading=data.heading;
     var content=data.content;
 var htmltemplate= `
     <html>
-    <head><title>${title}</title></head>
+    <head><title>Hello</title></head>
     <link href="/ui/style.css" rel="stylesheet" />
             </head>
     <body>
