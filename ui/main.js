@@ -27,7 +27,7 @@ function exec(){
     console.log('EXECUTED');
 }
   
-/* first try to get the names on button click
+/* first try to get the names on button click */
 var nameInput= document.getElementById('name');
 var name= nameInput.value;
 var submit=document.getElementById('submit_btn');
@@ -44,7 +44,7 @@ submit.onclick= function ()
    var ul=document.getElementById('nameList');
    ul.innerHTML=list;
    
-};*/
+};
 
 //Submit uname/paswd to login
 
