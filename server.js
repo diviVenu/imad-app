@@ -6,6 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 var bodyParser=require('body-parser');
 var session=require('express-session');
+var pool=require('pg').Pool;
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -24,7 +25,7 @@ app.get('/ui/main.js', function (req, res) {
 });
 
 //Begin Module P10
-var pool=require('pg').pool;
+
 
 var config={
     user: 'divya09feb91',
