@@ -104,6 +104,9 @@ app.get('/article-two', function (req, res) {
     res.sendFile(path.join(__dirname, 'ui', 'article-two.html'))
 });
 */
+app.get('/article-three', function (req, res) {
+    res.send('Article 3');
+});
 // Replacing the above two separate function calls with the following dynamic variable value subtitution in the URL
 app.get('/:articleName',function(req,res){
 var articleName=req.params.articleName;
@@ -118,9 +121,7 @@ app.get('/counter', function (req, res) {
     res.send(counter.toString());
 });
 
-app.get('/article-three', function (req, res) {
-    res.send('Article 3');
-});
+
 
 var names=[];
 app.get('/submit-name/:name', function (req, res) {
