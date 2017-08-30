@@ -6,7 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 var bodyParser=require('body-parser');
 var session=require('express-session');
-
+var Pool=require('pg').Pool;
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -138,7 +138,7 @@ app.get('/submit-name/:name', function (req, res) {
 //Begin Module P10
 //test-db
 var pool= new Pool(config);
-var pool=require('pg').Pool;
+
 app.get('/test-db',function (req, res) {
    pool.query('select * from test', function(err, result)
    {
