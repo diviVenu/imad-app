@@ -216,6 +216,10 @@ return htmltemplate;
 //End Module P10
 
 //Module P11 start from Console post request
+
+ app.use(bodyParser.json());
+app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
+
 function hash(input,salt)
 {
     var hashed=crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
@@ -228,8 +232,7 @@ app.get('/hash/:input',function (req, res) {
        res.send(hashedString);
 });
 
- app.use(bodyParser.json());
-app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
+
 
 //For post requests test the output using curl comand line tool from the terminal
 // Tye the commands from notes initially it gives No Buffer error as express is not aware of json input response
