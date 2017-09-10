@@ -232,6 +232,9 @@ app.use(bodyParser.json());
 app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
 
 //For post requests test the output using curl comand line tool from the terminal
+// Tye the commands from notes initially it gives No Buffer error as express is not aware of json input response
+//change the coomand accordingly it will get executed and the username and password enetered will be created as a new user in 
+//the respective table --Tested
 app.post('/create-user', function(req,res){
     
     var username=req.body.username;
