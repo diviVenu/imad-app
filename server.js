@@ -228,8 +228,7 @@ app.get('/hash/:input',function (req, res) {
        res.send(hashedString);
 });
 
-app.use(bodyParser.json());
-app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
+
 
 //For post requests test the output using curl comand line tool from the terminal
 // Tye the commands from notes initially it gives No Buffer error as express is not aware of json input response
@@ -253,7 +252,8 @@ app.post('/create-user', function(req,res){
     });
     
     //Login and Session
- 
+ app.use(bodyParser.json());
+app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
  app.post('/login', function(req,res){
     
     var username=req.body.username;
