@@ -277,8 +277,7 @@ app.post('/create-user', function(req,res){
                         
                         if(hashedPassword===dbString)
                         {
-                             req.session.auth={userId: result.rows[0].id};
-                            res.send('Credentials Correct');
+                                                        res.send('Credentials Correct');
                         }
                         else
                         {
