@@ -155,7 +155,7 @@ app.get('/test-db',function (req, res) {
 });
 
 // Navigate to /test-db to test the above portion of selecting data from DB
-//Outpu will be the no: of rows in the table
+//Output will be the no: of rows in the table
 
 //Dynamic content from DB , change the articles function to load articles from DB
 app.get('/articlesNew/:articleName',function (req, res) {
@@ -222,6 +222,7 @@ function hash(input,salt)
     return hashed.toString('hex');
 }
 
+//Navigate to /hash/some_string the output returned will be a hashd value with salt MyName string applied--Tested
 app.get('/hash/:input',function (req, res) {
     var hashedString=hash(req.params.input,'MyName');
        res.send(hashedString);
@@ -230,6 +231,7 @@ app.get('/hash/:input',function (req, res) {
 app.use(bodyParser.json());
 app.use(session({secret:'somerandomvalue', cookie:{maxAge: 1000*60*60*24*30}}));
 
+//For post requests test the output using curl comand line tool from the terminal
 app.post('/create-user', function(req,res){
     
     var username=req.body.username;
