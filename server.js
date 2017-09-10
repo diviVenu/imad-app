@@ -236,7 +236,7 @@ app.post('/create-user', function(req,res){
     var password=req.body.password;
     var salt=crypto.randomBytes(128).toString('hex');
     var dbString=hash(password,salt);
-    pool.query('INSERT INTO USERS (username,password) values ($1,$2)',[username,dbString],function(err,result){
+    pool.query('INSERT INTO users_a (username,password) values ($1,$2)',[username,dbString],function(err,result){
         if (err) {
             res.status(500).send(err.toString());
         }
@@ -254,7 +254,7 @@ app.post('/create-user', function(req,res){
     var username=req.body.username;
     var password=req.body.password;
    
-    pool.query('SELECT * FROM USERS WHERE username=$1',[username],function(err,result){
+    pool.query('SELECT * FROM users_a WHERE username=$1',[username],function(err,result){
         if (err) {
             res.status(500).send(err.toString());
         }
@@ -262,7 +262,7 @@ app.post('/create-user', function(req,res){
         {
            if (result.rows.length===0)
            {
-            res.send(403).send('username/paswd os invalid');
+            res.send(403).send('username/password is invalid');
                     }
                     else
                     {
@@ -291,14 +291,14 @@ app.post('/create-user', function(req,res){
        res.send('You are loged in:'+ req.session.auth.userId.toString());
           }
           else{
-              res.send("You are not logged in");
+              res.send('You are not logged in');
           }
 });
 
 //Logout and check session
 app.get('/Check-logout',function (req, res) {
    delete req.session.auth;
-              res.send("You are Logged Out!");
+              res.send('You are Logged Out!');
         
 });
 //Module P11  
