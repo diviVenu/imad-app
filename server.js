@@ -31,7 +31,7 @@ var config={
     user: 'divya09feb91',
     database: 'divya09feb91',
     host: 'db.imad.hasura-app.io',
-    port: '5432',
+    port: 5432,
     password: process.env.DB_PASSWORD
 };
 
